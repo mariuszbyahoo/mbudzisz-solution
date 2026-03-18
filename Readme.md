@@ -292,7 +292,7 @@ A short summary of the most important implementation decisions:
 5. Built the ASP.NET Core API around the expected contract
 6. Migrated the frontend to Angular using the React app as a behavioral reference
 7. Resolved frontend/backend contract mismatches during implementation
-8. Expanded automated testing across backend and frontend
+8. Expanded testing across backend and frontend
 
 ## Final Notes
 
