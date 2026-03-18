@@ -16,32 +16,28 @@ public class HealthEndpointTests : IClassFixture<CustomWebApplicationFactory>
     [Fact]
     public async Task GetHealth_ReturnsOk()
     {
-        // Act
         var response = await _client.GetAsync("/health");
 
-        // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     [Fact]
     public async Task GetHealth_ReturnsJsonContentType()
     {
-        // Act
         var response = await _client.GetAsync("/health");
 
-        // Assert
         Assert.Equal("application/json", response.Content.Headers.ContentType?.MediaType);
     }
 
     [Fact]
-    public async Task GetHealth_ReturnsJsonObject()
+    public async Task GetHealth_ReturnsExpectedContract()
     {
-        // Act
         var response = await _client.GetAsync("/health");
-        var content = await response.Content.ReadAsStringAsync();
-        var json = JsonDocument.Parse(content);
+        var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+        var root = json.RootElement;
 
-        // Assert
-        Assert.Equal(JsonValueKind.Object, json.RootElement.ValueKind);
+        Assert.Equal(JsonValueKind.Object, root.ValueKind);
+        Assert.Equal("ok", root.GetProperty("status").GetString());
+        Assert.Equal("Backend running with mock data loaded", root.GetProperty("message").GetString());
     }
 }

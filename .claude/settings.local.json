@@ -13,7 +13,10 @@
       "Bash(cmd /c \"taskkill /PID 16792 /F\" 2>&1)",
       "Bash(cmd /c \"taskkill /PID 16792 /F 2>&1\")",
       "Bash(powershell -Command \"Stop-Process -Id 16792 -Force -ErrorAction SilentlyContinue; Write-Host 'done'\")",
-      "Bash(powershell -Command \"Get-Process -Id 16792 -ErrorAction SilentlyContinue | Select-Object Id,Name\")"
+      "Bash(powershell -Command \"Get-Process -Id 16792 -ErrorAction SilentlyContinue | Select-Object Id,Name\")",
+      "Bash(cmd /c:*)",
+      "Bash(powershell -Command \"Stop-Process -Id 34188 -Force -ErrorAction SilentlyContinue; Stop-Process -Name ''MBudziszSolution.API'' -Force -ErrorAction SilentlyContinue; Get-Process -Name ''MBudziszSolution*'' -ErrorAction SilentlyContinue | Format-Table Id,Name\")",
+      "Bash(powershell:*)"
     ]
   }
 }

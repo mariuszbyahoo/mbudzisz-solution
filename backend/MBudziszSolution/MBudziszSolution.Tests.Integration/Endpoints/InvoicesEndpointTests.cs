@@ -13,61 +13,70 @@ public class InvoicesEndpointTests : IClassFixture<CustomWebApplicationFactory>
         _client = factory.CreateClient();
     }
 
+    // ── GET /api/invoices ───────────────────────────────────────────
+
     [Fact]
     public async Task GetAll_ReturnsOk()
     {
-        // Act
         var response = await _client.GetAsync("/api/invoices");
 
-        // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     [Fact]
     public async Task GetAll_ReturnsJsonContentType()
     {
-        // Act
         var response = await _client.GetAsync("/api/invoices");
 
-        // Assert
         Assert.Equal("application/json", response.Content.Headers.ContentType?.MediaType);
     }
 
     [Fact]
-    public async Task GetAll_ReturnsJsonArray()
+    public async Task GetAll_ReturnsAllInvoices()
     {
-        // Act
         var response = await _client.GetAsync("/api/invoices");
-        var content = await response.Content.ReadAsStringAsync();
-        var json = JsonDocument.Parse(content);
+        var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+        var root = json.RootElement;
 
-        // Assert
-        Assert.Equal(JsonValueKind.Array, json.RootElement.ValueKind);
+        Assert.Equal(JsonValueKind.Array, root.ValueKind);
+        Assert.Equal(4, root.GetArrayLength());
+
+        // Verify field names on first entry
+        var first = root[0];
+        Assert.True(first.TryGetProperty("id", out _), "Missing field: id");
+        Assert.True(first.TryGetProperty("orgId", out _), "Missing field: orgId");
+        Assert.True(first.TryGetProperty("projectId", out _), "Missing field: projectId");
+        Assert.True(first.TryGetProperty("amount", out _), "Missing field: amount");
+        Assert.True(first.TryGetProperty("currency", out _), "Missing field: currency");
+        Assert.True(first.TryGetProperty("status", out _), "Missing field: status");
+        Assert.True(first.TryGetProperty("description", out _), "Missing field: description");
     }
 
     [Fact]
-    public async Task GetAll_FilterByOrgId_ReturnsOkWithJsonArray()
+    public async Task GetAll_FilterByOrgId_ReturnsOnlyMatchingInvoices()
     {
-        // Act
         var response = await _client.GetAsync("/api/invoices?orgId=org-001");
-        var content = await response.Content.ReadAsStringAsync();
-        var json = JsonDocument.Parse(content);
+        var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+        var items = json.RootElement;
 
-        // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.Equal(JsonValueKind.Array, json.RootElement.ValueKind);
+        Assert.Equal(2, items.GetArrayLength());
+
+        foreach (var item in items.EnumerateArray())
+            Assert.Equal("org-001", item.GetProperty("orgId").GetString());
     }
 
     [Fact]
-    public async Task GetAll_FilterByStatus_ReturnsOkWithJsonArray()
+    public async Task GetAll_FilterByStatus_ReturnsOnlyMatchingInvoices()
     {
-        // Act
         var response = await _client.GetAsync("/api/invoices?status=sent");
-        var content = await response.Content.ReadAsStringAsync();
-        var json = JsonDocument.Parse(content);
+        var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+        var items = json.RootElement;
 
-        // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.Equal(JsonValueKind.Array, json.RootElement.ValueKind);
+        Assert.Equal(2, items.GetArrayLength());
+
+        foreach (var item in items.EnumerateArray())
+            Assert.Equal("sent", item.GetProperty("status").GetString());
     }
 }
