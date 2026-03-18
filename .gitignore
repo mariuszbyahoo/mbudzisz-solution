@@ -1,0 +1,158 @@
+﻿# ----------------------------
+# OS
+# ----------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ----------------------------
+# Git / patches / temp
+# ----------------------------
+*.orig
+*.rej
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# ----------------------------
+# Logs
+# ----------------------------
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ----------------------------
+# .NET build output
+# ----------------------------
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+artifacts/
+publish/
+
+# User-specific files
+*.rsuser
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Generated files
+*.cache
+*.ilk
+*.pidb
+*.svclog
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.dbmdl
+
+# ASP.NET / local config
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
+secrets.json
+
+# Test / coverage
+[Tt]est[Rr]esult*/
+[Tt]est[Rr]esults/
+BenchmarkDotNet.Artifacts/
+coverage/
+coverage.*
+*.coverage
+*.coveragexml
+coverage-report/
+.coverlet/
+.coverlet.collector/
+*.lcov
+*.trx
+
+# MSBuild / NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+!.nuget/NuGet.Config
+
+# Entity Framework / scaffolding temp
+*.db
+*.sqlite
+*.sqlite3
+
+# ----------------------------
+# Rider / IntelliJ
+# ----------------------------
+.idea/
+*.sln.iml
+
+# ----------------------------
+# Visual Studio Code
+# ----------------------------
+.vscode/
+
+# ----------------------------
+# Visual Studio
+# ----------------------------
+.vs/
+
+# ----------------------------
+# Node / Angular / frontend
+# ----------------------------
+node_modules/
+dist/
+build/
+.angular/
+.angular-cache/
+.npm/
+.pnpm-store/
+.parcel-cache/
+.next/
+.nuxt/
+.svelte-kit/
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# ----------------------------
+# Frontend test output
+# ----------------------------
+playwright-report/
+test-results/
+cypress/screenshots/
+cypress/videos/
+
+# ----------------------------
+# Docker / local infra
+# ----------------------------
+docker-compose.override.yml
+
+# ----------------------------
+# Misc generated executables
+# ----------------------------
+*.exe
+*.dll
+*.so
+*.dylib
+
+# ----------------------------
+# Keep important config files
+# ----------------------------
+!.gitignore
+!global.json
+!Directory.Build.props
+!Directory.Build.targets
