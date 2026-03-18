@@ -12,15 +12,12 @@ public class DashboardController : ControllerBase
     {
         return Ok(new
         {
-            organizationCount = SeedData.Organizations.Count,
-            userCount = SeedData.Users.Count,
-            projectCount = SeedData.Projects.Count,
-            timeEntryCount = SeedData.TimeEntries.Count,
-            invoiceCount = SeedData.Invoices.Count,
-            totalHoursLogged = SeedData.TimeEntries.Sum(te => te.Hours),
-            totalInvoiced = SeedData.Invoices.Sum(i => i.Amount),
-            activeProjectCount = SeedData.Projects.Count(p => p.Status.Equals("active", StringComparison.OrdinalIgnoreCase)),
-            activeUserCount = SeedData.Users.Count(u => u.Active)
+            totalOrganizations = SeedData.Organizations.Count,
+            totalUsers = SeedData.Users.Count,
+            totalProjects = SeedData.Projects.Count,
+            activeProjects = SeedData.Projects.Count(p => p.Status.Equals("active", StringComparison.OrdinalIgnoreCase)),
+            totalTimeEntries = SeedData.TimeEntries.Count,
+            totalInvoiced = SeedData.Invoices.Sum(i => i.Amount)
         });
     }
 }

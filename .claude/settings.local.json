@@ -7,7 +7,13 @@
       "Bash(dotnet build:*)",
       "Bash(dotnet test:*)",
       "Bash(find E:/dev/mbudzisz-solution/frontend/src/app -type f \\\\\\(-name *.ts -o -name *.html \\\\\\))",
-      "Bash(npx ng:*)"
+      "Bash(npx ng:*)",
+      "Bash(curl:*)",
+      "Bash(taskkill:*)",
+      "Bash(cmd /c \"taskkill /PID 16792 /F\" 2>&1)",
+      "Bash(cmd /c \"taskkill /PID 16792 /F 2>&1\")",
+      "Bash(powershell -Command \"Stop-Process -Id 16792 -Force -ErrorAction SilentlyContinue; Write-Host 'done'\")",
+      "Bash(powershell -Command \"Get-Process -Id 16792 -ErrorAction SilentlyContinue | Select-Object Id,Name\")"
     ]
   }
 }
