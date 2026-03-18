@@ -8,7 +8,7 @@ namespace MBudziszSolution.Data;
 /// </summary>
 public static class SeedData
 {
-    public static readonly List<Organization> Organizations =
+    public static readonly IReadOnlyList<Organization> Organizations =
     [
         new Organization
         {
@@ -73,7 +73,7 @@ public static class SeedData
         }
     ];
 
-    public static readonly List<User> Users =
+    public static readonly IReadOnlyList<User> Users =
     [
         new User
         {
@@ -157,7 +157,7 @@ public static class SeedData
         }
     ];
 
-    public static readonly List<Project> Projects =
+    public static readonly IReadOnlyList<Project> Projects =
     [
         new Project
         {
@@ -227,7 +227,7 @@ public static class SeedData
         }
     ];
 
-    public static readonly List<Invoice> Invoices =
+    public static readonly IReadOnlyList<Invoice> Invoices =
     [
         new Invoice
         {
@@ -279,7 +279,7 @@ public static class SeedData
         }
     ];
 
-    public static readonly List<TimeEntry> TimeEntries =
+    public static readonly IReadOnlyList<TimeEntry> TimeEntries =
     [
         new TimeEntry
         {
