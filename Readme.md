@@ -245,7 +245,7 @@ If needed, update the collection 'baseUrl' variable to match the local backend p
 
 ## Test Suite Summary
 
-The final solution includes automated tests across both backend (46 tests) and frontend (42 tests).
+The final solution includes tests across both backend (46 tests) and frontend (42 tests).
 
 ### Testing Philosophy
 
