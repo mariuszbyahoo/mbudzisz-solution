@@ -40,16 +40,19 @@ public class OrganizationsController : ControllerBase
         if (org is null)
             return NotFound(new { error = "Organization not found" });
 
+        var userCount = SeedData.Users.Count(u => u.OrgId == id);
+        var projectCount = SeedData.Projects.Count(p => p.OrgId == id);
+        var totalInvoiced = SeedData.Invoices
+            .Where(i => i.OrgId == id)
+            .Sum(i => i.Amount);
+
         return Ok(new
         {
-            org.Id,
-            org.Name,
-            org.Tier,
-            org.Industry,
-            userCount = 0,
-            projectCount = 0,
-            totalHoursLogged = 0.0,
-            activeProjectCount = 0
+            organization = org,
+            projectCount,
+            userCount,
+            totalInvoiced,
+            currency = org.Settings.Currency
         });
     }
 }
