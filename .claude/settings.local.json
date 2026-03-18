@@ -5,7 +5,9 @@
       "Bash(grep:*)",
       "Bash(del:*)",
       "Bash(dotnet build:*)",
-      "Bash(dotnet test:*)"
+      "Bash(dotnet test:*)",
+      "Bash(find E:/dev/mbudzisz-solution/frontend/src/app -type f \\\\\\(-name *.ts -o -name *.html \\\\\\))",
+      "Bash(npx ng:*)"
     ]
   }
 }
