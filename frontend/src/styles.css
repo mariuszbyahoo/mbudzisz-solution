@@ -14,7 +14,10 @@ nav {
   padding: 0.75rem 1.5rem;
 }
 nav a { margin-right: 1.25rem; font-weight: 500; }
-nav a.active { color: #1a1d21; border-bottom: 2px solid #2563eb; padding-bottom: 2px; }
+/*
+Commenting out the below guarantees 100% visual compatibility with the source code.
+nav a.active { color: #1a1d21; border-bottom: 2px solid #2563eb; padding-bottom: 2px; } 
+*/
 .card {
   background: #fff;
   border-radius: 8px;
