@@ -19,7 +19,7 @@ public class DashboardController : ControllerBase
             invoiceCount = SeedData.Invoices.Count,
             totalHoursLogged = SeedData.TimeEntries.Sum(te => te.Hours),
             totalInvoiced = SeedData.Invoices.Sum(i => i.Amount),
-            activeProjectCount = SeedData.Projects.Count(p => p.Status == "active"),
+            activeProjectCount = SeedData.Projects.Count(p => p.Status.Equals("active", StringComparison.OrdinalIgnoreCase)),
             activeUserCount = SeedData.Users.Count(u => u.Active)
         });
     }
