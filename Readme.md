@@ -17,7 +17,7 @@ This solution includes:
 
 - an **ASP.NET Core Web API** implementing the required endpoints
 - an **Angular frontend** recreating the core pages and flows from the provided React application
-- a **comprehensive automated test suite** across backend and frontend
+- a backend **integration/unit tests** and Angular **service/component tests**
 - a documented **security review** of the supplied reference implementation
 
 The implementation intentionally prioritizes:
@@ -151,7 +151,7 @@ The Angular frontend focuses on:
 - straightforward component structure
 - relative API access via proxy
 
-The emphasis was on producing a maintainable migration rather than reproducing the React implementation line-for-line. From the other hand, I have reproduced several things from the UI perspective which maybe I did not liked (lack of CSS class showing that a particular navbar element is selected, or the font on the page treating immutable signs with a caret cursor), but I decided to migrate those 1 to 1 exactly as it was as I think that all of the flavours of the migrated system should be preserved for the sake of the end users eventual habits.
+The emphasis was on producing a maintainable migration rather than reproducing the React implementation line-for-line. 
 
 ## Running the backend
 
