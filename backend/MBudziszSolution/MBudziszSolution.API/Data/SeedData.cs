@@ -278,4 +278,116 @@ public static class SeedData
             Description = "Settlement & Reporting Microservices \u2013 Phase 1: architecture design and event contracts, first microservice implementation (settlement API and data access layer), and integration with identity and audit systems. This invoice covers professional services for February and March 2024. Payment terms: Net 30 from invoice date. Please remit to the address on file and include the invoice number with your payment to ensure proper application. For any discrepancies or questions, contact the Decryptcode project manager or accounts team before the due date."
         }
     ];
+
+    public static readonly List<TimeEntry> TimeEntries =
+    [
+        new TimeEntry
+        {
+            Id = "te-001",
+            UserId = "user-001",
+            ProjectId = "proj-001",
+            Date = "2024-03-01",
+            Hours = 6,
+            Description = "Architecture review session with stakeholders: reviewed proposed ASP.NET Core service boundaries, database schema changes, and migration sequence. We discussed authentication flow (SSO integration), API versioning strategy, and rollout phases (read-only first, then write paths with feature flags). Documented all decisions in Confluence as architecture decision records and shared follow-up actions with frontend and DevOps. Also captured open questions on connection pooling and logging levels for production. Follow-up meeting scheduled to finalize monitoring and alerting requirements."
+        },
+        new TimeEntry
+        {
+            Id = "te-002",
+            UserId = "user-001",
+            ProjectId = "proj-001",
+            Date = "2024-03-02",
+            Hours = 8,
+            Description = "Backend design and initial project setup: created solution structure with clear separation of API, domain, and infrastructure. Configured dependency injection, health checks, and structured logging. Defined base controllers and middleware for request validation, error handling, and correlation ID propagation. Drafted OpenAPI spec for the first set of endpoints (organizations, users, projects, time entries, invoices, dashboard) and aligned with frontend team on response shapes, error codes, and pagination approach. Set up repository pattern and in-memory data layer for development; documented approach for swapping to real database later."
+        },
+        new TimeEntry
+        {
+            Id = "te-003",
+            UserId = "user-002",
+            ProjectId = "proj-001",
+            Date = "2024-03-01",
+            Hours = 4,
+            Description = "Frontend setup and API integration: initialized Angular workspace with routing and shared modules. Configured proxy for local API and environment-based base URLs. Implemented shared HTTP client with interceptors for error handling and loading state. Built first set of components for dashboard and organization list, wired to new backend endpoints. Verified CORS and response handling with backend team; fixed a few serialization mismatches and documented the agreed contract for dates and nulls."
+        },
+        new TimeEntry
+        {
+            Id = "te-004",
+            UserId = "user-002",
+            ProjectId = "proj-002",
+            Date = "2024-03-03",
+            Hours = 7,
+            Description = "Gateway configuration and routing: evaluated gateway options (Ocelot vs YARP vs custom middleware) and implemented routing rules for existing ASP.NET Core services. Configured rate limiting and request size limits per route. Added correlation ID propagation and structured logging for debugging and traceability. Documented configuration and deployment steps for DevOps and created a runbook for common operational tasks. Coordinated with security on authentication passthrough and header handling."
+        },
+        new TimeEntry
+        {
+            Id = "te-005",
+            UserId = "user-004",
+            ProjectId = "proj-004",
+            Date = "2024-03-04",
+            Hours = 8,
+            Description = "ERP API discovery and requirements refinement: met with ERP vendor and internal operations to map available APIs, authentication mechanisms, and data refresh cycles. Documented constraints (batch size limits, rate limits, available webhooks) and identified gaps that may require polling or manual export/import. Updated technical specification and shared with Decryptcode team for implementation planning. Reviewed compliance and audit requirements with legal to ensure sync jobs and logs meet retention and audit trail expectations. Scheduled follow-up for UAT planning with operations."
+        },
+        new TimeEntry
+        {
+            Id = "te-006",
+            UserId = "user-005",
+            ProjectId = "proj-004",
+            Date = "2024-03-04",
+            Hours = 5,
+            Description = "Data mapping and ETL design: continued mapping ERP entities (orders, inventory, suppliers) to our internal domain model. Defined transformation rules, default values, and handling for missing or invalid source data. Drafted idempotency and conflict resolution strategy for sync jobs (last-write-wins vs error-and-alert). Started spike on background job framework (Hangfire vs custom hosted service) for scheduled sync; documented pros/cons and recommended approach for team review."
+        },
+        new TimeEntry
+        {
+            Id = "te-007",
+            UserId = "user-001",
+            ProjectId = "proj-001",
+            Date = "2024-03-05",
+            Hours = 8,
+            Description = "Migration planning and runbook: wrote detailed step-by-step runbook for first production cutover (read-only endpoints first, then write paths behind feature flags). Defined rollback criteria, monitoring alerts, and escalation path. Coordinated with DevOps on deployment pipeline, feature flags, and database migration strategy. Reviewed with product and stakeholders; updated project timeline and risk register. Runbook includes pre-cutover checklist, cutover steps, post-cutover verification, and rollback procedure. Shared draft with Carol for review of legacy behavior assumptions."
+        },
+        new TimeEntry
+        {
+            Id = "te-008",
+            UserId = "user-006",
+            ProjectId = "proj-005",
+            Date = "2024-03-06",
+            Hours = 3,
+            Description = "Requirements gathering for compliance dashboard: workshop with compliance and legal on audit log retention (7 years for HIPAA-relevant access), access control matrix (roles and permissions), and export formats for auditors. Captured HIPAA-relevant use cases (access to PHI, disclosure logging, breach notification support) and documented in product backlog with acceptance criteria. Scheduled follow-up for technical design once priorities are confirmed and budget is approved. Provided rough effort estimate for backend and frontend scope."
+        },
+        new TimeEntry
+        {
+            Id = "te-009",
+            UserId = "user-007",
+            ProjectId = "proj-006",
+            Date = "2024-03-07",
+            Hours = 6,
+            Description = "Microservices architecture review: walked through event contracts, service boundaries, and failure modes with settlement and reporting squads. Agreed on idempotency keys, dead-letter handling, and observability standards (metrics, distributed tracing, structured logs). Updated architecture documentation and shared with security for review. Aligned deployment and feature flag strategy with release management. Discussed database-per-service vs shared database trade-offs and agreed on current approach with clear ownership and migration path. Documented non-functional requirements for latency and throughput."
+        },
+        new TimeEntry
+        {
+            Id = "te-010",
+            UserId = "user-008",
+            ProjectId = "proj-006",
+            Date = "2024-03-07",
+            Hours = 7,
+            Description = "Implementation of settlement API and data access layer: implemented first ASP.NET Core controller and repository for settlement records, including filtering and pagination. Added unit tests for business logic and integration tests against in-memory store (to be swapped for real DB). Aligned behavior with existing Node.js business rules; documented any intentional differences. Integrated with identity middleware and audit logging so all reads and writes are traced. Addressed code review feedback from Grace and team: improved error messages, added null checks, and refined API response shape."
+        },
+        new TimeEntry
+        {
+            Id = "te-011",
+            UserId = "user-001",
+            ProjectId = "proj-001",
+            Date = "2024-03-08",
+            Hours = 4,
+            Description = "Performance testing and optimization: ran load tests against new endpoints and identified N+1 query in organization summary; fixed with proper eager loading and projection. Tuned connection pool and logging levels for production (reduced verbosity, structured fields only). Documented baseline metrics (latency p95, throughput) and target SLAs for go-live. Shared results with DevOps for capacity planning and set up basic performance regression in CI. One follow-up item: add caching for dashboard aggregate endpoint if needed after traffic analysis."
+        },
+        new TimeEntry
+        {
+            Id = "te-012",
+            UserId = "user-002",
+            ProjectId = "proj-001",
+            Date = "2024-03-08",
+            Hours = 5,
+            Description = "Angular accessibility and error handling: completed keyboard navigation and screen reader support for main flows (dashboard, organizations, projects, list and detail views). Improved error messages and retry logic for failed API calls; added user-friendly fallbacks and contact support link. Implemented loading states and empty states for all list and detail views. Passed internal a11y checklist (keyboard, focus order, ARIA, contrast). Updated component library documentation and shared with design for consistency. One outstanding item: add skip links for main content on next sprint."
+        }
+    ];
 }
