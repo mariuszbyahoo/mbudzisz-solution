@@ -1,7 +1,17 @@
+using MBudziszSolution.Data;
+using MBudziszSolution.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+builder.Services.AddSingleton(new AggregationService(
+    SeedData.Organizations,
+    SeedData.Users,
+    SeedData.Projects,
+    SeedData.TimeEntries,
+    SeedData.Invoices
+));
 
 var app = builder.Build();
 

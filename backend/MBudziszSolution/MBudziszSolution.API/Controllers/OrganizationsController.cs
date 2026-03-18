@@ -1,4 +1,5 @@
 using MBudziszSolution.Data;
+using MBudziszSolution.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MBudziszSolution.Controllers;
@@ -7,6 +8,13 @@ namespace MBudziszSolution.Controllers;
 [Route("api/[controller]")]
 public class OrganizationsController : ControllerBase
 {
+    private readonly AggregationService _aggregation;
+
+    public OrganizationsController(AggregationService aggregation)
+    {
+        _aggregation = aggregation;
+    }
+
     [HttpGet]
     public IActionResult GetAll([FromQuery] string? tier, [FromQuery] string? industry)
     {
@@ -40,18 +48,14 @@ public class OrganizationsController : ControllerBase
         if (org is null)
             return NotFound(new { error = "Organization not found" });
 
-        var userCount = SeedData.Users.Count(u => u.OrgId == id);
-        var projectCount = SeedData.Projects.Count(p => p.OrgId == id);
-        var totalInvoiced = SeedData.Invoices
-            .Where(i => i.OrgId == id)
-            .Sum(i => i.Amount);
+        var stats = _aggregation.GetOrganizationSummary(id);
 
         return Ok(new
         {
             organization = org,
-            projectCount,
-            userCount,
-            totalInvoiced,
+            stats.ProjectCount,
+            stats.UserCount,
+            stats.TotalInvoiced,
             currency = org.Settings.Currency
         });
     }

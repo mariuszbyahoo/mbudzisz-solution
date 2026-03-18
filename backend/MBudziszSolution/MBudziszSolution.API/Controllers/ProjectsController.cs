@@ -1,4 +1,5 @@
 using MBudziszSolution.Data;
+using MBudziszSolution.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MBudziszSolution.Controllers;
@@ -7,6 +8,13 @@ namespace MBudziszSolution.Controllers;
 [Route("api/[controller]")]
 public class ProjectsController : ControllerBase
 {
+    private readonly AggregationService _aggregation;
+
+    public ProjectsController(AggregationService aggregation)
+    {
+        _aggregation = aggregation;
+    }
+
     [HttpGet]
     public IActionResult GetAll([FromQuery] string? orgId, [FromQuery] string? status)
     {
@@ -30,9 +38,7 @@ public class ProjectsController : ControllerBase
             return NotFound(new { error = "Project not found" });
 
         var organization = SeedData.Organizations.FirstOrDefault(o => o.Id == project.OrgId);
-        var totalHoursLogged = SeedData.TimeEntries
-            .Where(te => te.ProjectId == id)
-            .Sum(te => te.Hours);
+        var totalHoursLogged = _aggregation.GetTotalHoursLogged(id);
 
         return Ok(new
         {

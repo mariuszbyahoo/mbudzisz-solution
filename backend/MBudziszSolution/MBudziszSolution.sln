@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBudziszSolution.API", "MBu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBudziszSolution.Tests.Integration", "MBudziszSolution.Tests.Integration\MBudziszSolution.Tests.Integration.csproj", "{A7AD46BC-E009-459A-A5F5-37962B9B311E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBudziszSolution.Tests.Unit", "MBudziszSolution.Tests.Unit\MBudziszSolution.Tests.Unit.csproj", "{5C7A0FC9-C957-4BC3-9240-D51DEDDDD846}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{A7AD46BC-E009-459A-A5F5-37962B9B311E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7AD46BC-E009-459A-A5F5-37962B9B311E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7AD46BC-E009-459A-A5F5-37962B9B311E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C7A0FC9-C957-4BC3-9240-D51DEDDDD846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C7A0FC9-C957-4BC3-9240-D51DEDDDD846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C7A0FC9-C957-4BC3-9240-D51DEDDDD846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C7A0FC9-C957-4BC3-9240-D51DEDDDD846}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
