@@ -27,11 +27,14 @@ describe('DashboardComponent', () => {
 
   afterEach(() => httpMock.verify());
 
-  it('should create', () => {
+  it('should fetch dashboard data from the API on init', () => {
     const fixture = TestBed.createComponent(DashboardComponent);
     fixture.detectChanges();
-    expect(fixture.componentInstance).toBeTruthy();
-    httpMock.expectOne('/api/dashboard').flush(SEED_DASHBOARD);
+
+    // Exactly one request should be issued to the correct endpoint
+    const req = httpMock.expectOne('/api/dashboard');
+    expect(req.request.method).toBe('GET');
+    req.flush(SEED_DASHBOARD);
   });
 
   it('should show loading state before the API responds', () => {

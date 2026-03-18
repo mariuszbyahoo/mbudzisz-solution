@@ -80,14 +80,32 @@ public class TimeEntriesEndpointTests : IClassFixture<CustomWebApplicationFactor
     }
 
     [Fact]
-    public async Task GetAll_FilterByDateRange_ReturnsOnlyMatchingEntries()
+    public async Task GetAll_FilterByDateRange_FullRangeReturnsAllEntries()
     {
-        // All seed entries fall within March 2024, so this range returns all 12
+        // All seed entries fall within March 2024
         var response = await _client.GetAsync("/api/time-entries?from=2024-03-01&to=2024-03-31");
+        var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal(12, json.RootElement.GetArrayLength());
+    }
+
+    [Fact]
+    public async Task GetAll_FilterByDateRange_NarrowRangeReturnsSubset()
+    {
+        // Seed entries on 2024-03-07: te-009, te-010
+        // Seed entries on 2024-03-08: te-011, te-012
+        var response = await _client.GetAsync("/api/time-entries?from=2024-03-07&to=2024-03-08");
         var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
         var items = json.RootElement;
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.Equal(12, items.GetArrayLength());
+        Assert.Equal(4, items.GetArrayLength());
+
+        foreach (var item in items.EnumerateArray())
+        {
+            var date = DateOnly.Parse(item.GetProperty("date").GetString()!);
+            Assert.InRange(date, new DateOnly(2024, 3, 7), new DateOnly(2024, 3, 8));
+        }
     }
 }
